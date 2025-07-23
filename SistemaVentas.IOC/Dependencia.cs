@@ -10,6 +10,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using SistemaVentas.DAL.Repositorios;
+using SistemaVentas.DAL.Repositorios.Contrato;
+
+
 namespace SistemaVentas.IOC
 {
     //clase que va a tener el {Método de extensión}
@@ -26,6 +30,9 @@ namespace SistemaVentas.IOC
             {
                 options.UseSqlServer(configuration.GetConnectionString("cadenaSQL"));
             });
+
+            services.AddTransient(typeof(IGenericoRepository<>), typeof(GenericoRepository<>));
+            services.AddScoped<IVentaRepository , VentaRepository>();
         }
     }
 }
