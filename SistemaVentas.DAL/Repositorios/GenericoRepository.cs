@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using SistemaVentas.DAL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using System.Reflection.Metadata;
+using SistemaVentas.DAL.DBContext;
 
 namespace SistemaVentas.DAL.Repositorios
 {

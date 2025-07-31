@@ -13,6 +13,26 @@ builder.Services.AddSwaggerGen();
 builder.Services.InyectarDependencias(builder.Configuration);
 
 
+//Acticar Cors, para poder tener acceso al API desde la aplicación Angular, sin tener problemas
+// de URL
+// Agrega servicios de CORS (Cross-Origin Resource Sharing) al contenedor de dependencias.
+builder.Services.AddCors(options =>
+{
+    // Define una política de CORS personalizada llamada "NuevaPolitica".
+    options.AddPolicy("NuevaPolitica", app =>
+    {
+        // Permite solicitudes desde cualquier origen (dominio). 
+        // ¡Atención! Esto puede ser inseguro en producción.
+        app.AllowAnyOrigin()
+
+        // Permite cualquier encabezado HTTP en las solicitudes (por ejemplo, Authorization, Content-Type).
+        .AllowAnyHeader()
+
+        // Permite cualquier método HTTP (GET, POST, PUT, DELETE, etc.).
+        .AllowAnyMethod();
+    });
+});
+
 
 var app = builder.Build();
 
@@ -22,6 +42,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("NuevaPolitica");
+
 
 app.UseAuthorization();
 

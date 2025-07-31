@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SistemaVentas.Model
+namespace SistemaVentas.DTO
 {
-    public partial class Menu
+    public class MenuDTO
     {
-        [Key]
         public int IdMenu { get; set; }
         public string? Nombre { get; set; }
         public string? Icono { get; set; }
         public string? Url { get; set; }
-
-        public virtual ICollection<MenuRol> MenuRols { get; set; }
     }
 }

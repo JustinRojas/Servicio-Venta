@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using SistemaVentas.DAL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using SistemaVentas.Model;
 using SistemaVentas.DAL.Repositorios.Contrato;
+using SistemaVentas.DAL;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using SistemaVentas.DAL.DBContext;
 
 
 namespace SistemaVentas.DAL.Repositorios
@@ -24,7 +25,12 @@ namespace SistemaVentas.DAL.Repositorios
         {
             _dbContext = dbContext;
         }
-
+        /// <summary>
+        /// Método que registra una venta en la BD mediante EntityFramework, mediante una trasaccion 
+        /// ya que se actualiza stock, se registra la venta y tambien se genera el numero de documento
+        /// </summary>
+        /// <param name="modelo"></param>
+        /// <returns></returns>
         public async Task<Venta> Registrar(Venta modelo)
         {
 
@@ -64,7 +70,7 @@ namespace SistemaVentas.DAL.Repositorios
 
                     //Actualizamos el campo del modelo y lo guardamos en la bd
                     modelo.NumeroDocumento = numeroVenta;
-                   await  _dbContext.Ventas.AddAsync(modelo);
+                   await  _dbContext.Venta.AddAsync(modelo);
                     await _dbContext.SaveChangesAsync();
 
 

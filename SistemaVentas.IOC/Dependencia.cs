@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SistemaVentas.DAL.DBContext;
+
 using SistemaVentas.Model;
 using System;
 using System.Collections.Generic;
@@ -12,6 +12,12 @@ using System.Threading.Tasks;
 
 using SistemaVentas.DAL.Repositorios;
 using SistemaVentas.DAL.Repositorios.Contrato;
+
+using SistemaVentas.Utility;
+using SistemaVentas.DTO;
+using SistemaVentas.BLL.Servicios.Contrato;
+using SistemaVentas.BLL.Servicios;
+using SistemaVentas.DAL.DBContext;
 
 
 namespace SistemaVentas.IOC
@@ -33,6 +39,22 @@ namespace SistemaVentas.IOC
 
             services.AddTransient(typeof(IGenericoRepository<>), typeof(GenericoRepository<>));
             services.AddScoped<IVentaRepository , VentaRepository>();
+
+            services.AddAutoMapper(typeof(AutoMapperProfile));
+
+
+            //Todas las dependencias que se crean en la biblioteca BLL 
+            services.AddScoped<IRolService, RolService>();
+             services.AddScoped<ICategoriaService, CategoriaService>();
+             services.AddScoped<IDashboardService, DashboardServices>();
+             services.AddScoped<IMenuService, MenuService>();
+            services.AddScoped<IProductoService, ProductoService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IVentaService, VentaService>();
+
+
+
+
         }
     }
 }

@@ -20,7 +20,8 @@ namespace SistemaVentas.DAL.Repositorios.Contrato
 
         Task<bool> Eliminar(TModel model);
 
-        //Este devuelve el query, o la consulta según el modelo
+        //Este devuelve el query, o la consulta según el modelo. Esto devuelve la cosulta ya que se le puede agregar m{as
+        //filtro o lo que sea necesario en la clase de implementación
         Task<IQueryable<TModel>> Consultar(Expression<Func<TModel, bool>> filtro = null);
     }
 }
